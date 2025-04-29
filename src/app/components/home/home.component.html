@@ -1,0 +1,73 @@
+<div *ngIf="user">
+  <img
+    *ngIf="user.photoUrl"
+    [src]="user.photoUrl"
+    alt="{{ user.name }}'s avatar"
+  />
+  <img
+    *ngIf="!user.photoUrl"
+    [src]="'assets/icons/user.svg'"
+    alt="{{ user.name }}'s avatar"
+  />
+  <span
+    *ngIf="!user.photoUrl"
+    (click)="navigateToUpdateUser()"
+    style="cursor: pointer"
+    >Add photo</span
+  >
+  <div class="userInfo">
+    <h1>{{ user.name }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <p *ngIf="user.phone">Phone: {{ user.phone }}</p>
+    <span
+      *ngIf="!user.phone"
+      (click)="navigateToUpdateUser()"
+      style="cursor: pointer"
+      >Add phone</span
+    >
+    <p *ngIf="user.address">Address: {{ user.address }}</p>
+    <span
+      *ngIf="!user.address"
+      (click)="navigateToUpdateUser()"
+      style="cursor: pointer"
+      >Add address</span
+    >
+    <div class="button-container">
+      <button class="update-data-button" (click)="navigateToUpdateUser()">
+        Perfil
+      </button>
+      <button
+        class="upsert-social-media-button"
+        (click)="navigateToUpsertSocialMedia()"
+      >
+        Redes Sociais
+      </button>
+      <button class="create-repo-button" (click)="navigateToCreateRepo()">
+        Repositórios
+      </button>
+    </div>
+    <div *ngIf="user.userSocialMedias?.length > 0" class="social-links">
+      <a
+        *ngFor="let media of user.userSocialMedias"
+        [href]="media.link"
+        target="_blank"
+        class="social-icon"
+      >
+        <img
+          [src]="getIconPath(media.socialMedia)"
+          [alt]="media.socialMedia + ' icon'"
+        />
+      </a>
+    </div>
+  </div>
+
+  <div class="repositories">
+    <h2>Repositories</h2>
+    <div class="repo-grid">
+      <div *ngFor="let repo of user.repositories" class="repo-box">
+        <a [href]="repo.link" target="_blank">{{ repo.link }}</a>
+        <p>{{ repo.language }}</p>
+      </div>
+    </div>
+  </div>
+</div>

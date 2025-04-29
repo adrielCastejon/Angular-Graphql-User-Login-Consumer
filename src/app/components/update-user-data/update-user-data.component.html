@@ -1,0 +1,25 @@
+<div class="user-data-container">
+  <p class="back" (click)="back()">Voltar</p>
+  <div class="text-container">
+    <h1></h1>
+  </div>
+  <h2>Atualizar dados de usuário</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input type="name" [(ngModel)]="name" name="name" />
+
+      <label for="phone">Phone</label>
+      <input type="phone" [(ngModel)]="phone" name="phone" />
+
+      <label for="photoUrl">Endereço (link) da foto de perfil</label>
+      <input type="photoUrl" [(ngModel)]="photoUrl" name="photoUrl" />
+
+      <label for="address">Endereço físico</label>
+      <input type="address" [(ngModel)]="address" name="address" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <span class="delete-user" (click)="onDeleteSubmit()">Deletar usuário</span>
+</div>
